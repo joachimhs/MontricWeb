@@ -1,0 +1,46 @@
+<div id="loginArea">
+    <div class="clearfix">
+        <div id="loginDateArea" class="pull-right">
+            <h1>{{controller.currentTime}}</h1>
+            <hr />
+            <h2>{{controller.currentDate}}</h2>
+        </div>
+    </div>
+
+    <div class="largeMarginTop"></div>
+
+    <div id="loginForm">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="/images/montric_logo_small_dark.png" class="login-image" />
+                <p>Montric is currently in Beta. You are free to register an account, but your data will only be retained for one week. Throughout the beta-period we will expand the retention. Towards the end of the beta-period we will add subscription plans with different retention lengths.</p>
+                {{#if controllers.user.multipleAccounts}}
+                    <p class="multiple-accounts-warning">
+                        There are multiple accounts connected with the user. Please select the account you wish to use.
+                        <div class="list-group">
+                            {{#each account in controllers.user.accounts}}
+                                <div class="list-group-item pointer" {{action "selectAccountForUser" account}}>{{account}}</div>
+                            {{/each}}
+                        </div>
+                    </p>
+                {{/if}}
+                <div class="text-center small-bottom-margin">
+
+                    {{#if controller.isLoggingIn}}
+                        <button class="persona-button"><span>Signing In... Please Wait!</span></button>
+                    {{else}}
+
+                        {{#if controller.isLoggedIn}}
+                            <button class="persona-button" {{action doLogout}}><span>User Logged In! Log Out</span></button>
+                        {{else}}
+                            <button class="persona-button" {{action doLogin}}><span>Sign in with your email</span></button>
+                        {{/if}}
+
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="humongousMarginTop"></div>
+</div>

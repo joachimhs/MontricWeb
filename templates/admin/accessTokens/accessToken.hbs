@@ -1,0 +1,23 @@
+<div id="chartsArea">
+    <div class="chart">
+        <h1>Access Token: {{id}}</h1>
+
+        <form role="form">
+            <table class="table">
+                <tr>
+                    <td>Activated:</td>
+                    <td colspan="1">
+                        {{check-box isSelected=accessTokenActivated selectedText="activated" deselectedText="deactivated"}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Access Token Name:</td>
+                    <td>{{view Ember.TextField valueBinding="accessTokenName" classNames="input-mini form-control"}}</td>
+                </tr>
+                <tr class="footer">
+                    <td colspan="4"><button {{action "doCommitAccessToken"}} class="btn btn-primary" style="width: 100%;">Save Access Token</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

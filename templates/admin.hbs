@@ -1,0 +1,123 @@
+<div id="exploreArea">
+    <div id="metricsMenu">
+        <div class="list-group">
+            {{#link-to "admin.alerts" classNames=" list-group-item categoryItem"}}
+                Alerts
+                <button class="list-group-item-button pull-right btn btn-sm btn-default" {{action "addNewAlert"}}>Add</button>
+            {{/link-to}}
+
+                {{#if controller.isAdminAlertsActive}}
+                <div class="list-group">
+                    {{#if controller.showNewAlertPanel}}
+                        <div class="list-group-item subcategoryItem newAlertPanel">
+                            <h1>New Alert</h1>
+                            {{input type="text" value=controller.newAlertName class="form-control"}}
+
+                            <button class="btn btn-primary form-control" {{action "saveNewAlert"}}>Save</button>
+                            <button class="btn btn-default form-control" {{action "cancelNewAlert"}}>Cancel</button>
+                        </div>
+                    {{/if}}
+                    {{#each alert in controllers.adminAlerts.alerts}}
+                        {{link-to alert.id "admin.alerts.alert" alert.id classNames="list-group-item subcategoryItem"}}
+                    {{/each}}
+                </div>
+                {{/if}}
+
+            {{#link-to "admin.chartGroups" classNames="list-group-item categoryItem"}}
+                Chart Groups
+                <button class="list-group-item-button pull-right btn btn-sm btn-default" {{action "addNewChartGroup"}}>Add</button>
+            {{/link-to}}
+
+            {{#if controller.isAdminChartGroupsActive}}
+                <div class="list-group">
+
+                    {{#if controller.showNewChartGroupPanel}}
+                        <div class="list-group-item subcategoryItem newAlertPanel">
+                            <h1>New Chart Group</h1>
+                            {{input type="text" value=controller.newChartGroupName class="form-control"}}
+
+                            <button class="btn btn-primary form-control" {{action "saveNewChartGroup"}}>Save</button>
+                            <button class="btn btn-default form-control" {{action "cancelNewChartGroup"}}>Cancel</button>
+                        </div>
+                    {{/if}}
+
+                    {{#each chartGroup in controllers.adminChartGroups.model}}
+                        {{link-to chartGroup.id "admin.chartGroups.chartGroup" chartGroup classNames="list-group-item subcategoryItem"}}
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            {{#link-to "admin.alertRecipients" classNames=" list-group-item categoryItem"}}
+                Alert Recipients
+                <button class="list-group-item-button pull-right btn btn-sm btn-default" {{action "addNewAlertRecipient"}}>Add</button>
+            {{/link-to}}
+
+            {{#if controller.isAdminAlertRecipientsActive}}
+                <div class="list-group">
+                    {{#if controller.showNewAlertRecipientPanel}}
+                        <div class="list-group-item subcategoryItem newAlertPanel">
+                            <h1>New Alert Recipient</h1>
+                            {{input type="text" value=controller.newAlertRecipientName class="form-control"}}
+
+                            <button class="btn btn-primary form-control" {{action "saveNewAlertRecipient"}}>Save</button>
+                            <button class="btn btn-default form-control" {{action "cancelNewAlertRecipient"}}>Cancel</button>
+                        </div>
+                    {{/if}}
+                    {{#each alertRecipient in controllers.adminAlertRecipients.alertRecipients}}
+                        {{link-to alertRecipient.id "admin.alertRecipients.alertRecipient" alertRecipient.id classNames="list-group-item subcategoryItem"}}
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            {{#link-to "admin.accessTokens" classNames=" list-group-item categoryItem"}}
+                Access Tokens
+                <button class="list-group-item-button pull-right btn btn-sm btn-default" {{action "addNewAccessToken"}}>Add</button>
+            {{/link-to}}
+
+            {{#if controller.isAdminAccessTokensActive}}
+                <div class="list-group">
+                    {{#if controller.showNewAccessTokenPanel}}
+                        <div class="list-group-item subcategoryItem newAlertPanel">
+                            <h1>New Access Token</h1>
+                            {{input type="text" value=controller.newAccessTokenName class="form-control"}}
+
+                            <button class="btn btn-primary form-control" {{action "saveNewAccessToken"}}>Save</button>
+                            <button class="btn btn-default form-control" {{action "cancelNewAccessToken"}}>Cancel</button>
+                        </div>
+                    {{/if}}
+                    {{#each accessToken in controllers.adminAccessTokens.model}}
+                        {{link-to accessToken.id "admin.accessTokens.accessToken" accessToken classNames="list-group-item subcategoryItem"}}
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            {{#link-to "admin.users" classNames=" list-group-item categoryItem"}}
+                Users
+                <button class="list-group-item-button pull-right btn btn-sm btn-default" {{action "addNewUser"}}>Add</button>
+            {{/link-to}}
+
+            {{#if controller.isAdminUsersActive}}
+                <div class="list-group">
+                    {{#if controller.showNewUserPanel}}
+                        <div class="list-group-item subcategoryItem newAlertPanel">
+                            <h1>Add User With Email</h1>
+                            {{input type="text" value=controller.newUserEmail class="form-control"}}
+
+                            <button class="btn btn-primary form-control" {{action "saveNewUser"}}>Save</button>
+                            <button class="btn btn-default form-control" {{action "cancelNewUser"}}>Cancel</button>
+                        </div>
+                    {{/if}}
+
+                    {{#each usr in controllers.user.model.account.users}}
+                        {{link-to usr "admin.users.user" usr classNames="list-group-item subcategoryItem"}}
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            {{link-to "Account" "admin.accounts" classNames=" list-group-item categoryItem"}}
+        </div>
+
+    </div>
+
+    {{outlet}}
+</div>

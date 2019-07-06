@@ -1,0 +1,20 @@
+<div id="chartsArea">
+    <div class="chart">
+        <h1>User: {{model.id}}</h1>
+
+        <form role="form">
+            <table class="table">
+                <tr>
+                    <td style="width: 150px;">User type:</td>
+                    <td>
+                        <button {{bind-attr class="model.isAdminLevel:btn-primary:btn-default :btn :btn-sm"}} {{action "setUserAdminLevel"}}>Admin</button>
+                        <button {{bind-attr class="model.isUserLevel:btn-primary:btn-default :btn :btn-sm"}} {{action "setUserUserLevel"}}>User</button>
+                    </td>
+                </tr>
+                <tr class="footer">
+                    <td colspan="2"><button {{action "doCommitUser"}} class="btn btn-primary form-control" style="">Save User</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

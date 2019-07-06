@@ -1,0 +1,69 @@
+<div id="exploreArea">
+    <div id="metricsMenu">
+        {{tree-menu rootNodes=controller.rootNodes allowMultipleSelections=true}}
+    </div>
+
+    <div id="chartsArea">
+        {{#each selectedNode in selectedNodes}}
+                {{#if selectedNode.chart.series}}
+                    {{line-chart chart=selectedNode.chart numCharts=selectedNodes.length}}
+                {{else}}
+                    <div class="chart chart-loading"><h1>Loading chart {{selectedNode.id}}</h1></div>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+
+    <div id="chartTimeSelection">
+        {{#unless timeSelectionIsExpanded}}
+            <span {{action "toggleTimeSelection"}}>
+                <i class="fa fa-2x fa-clock-o"></i>
+            </span>
+        {{else}}
+            <div class="time-selection-area">
+                <div class="time-selection-icon" {{action "toggleTimeSelection"}}>
+                    <i class="fa fa-2x fa-clock-o"></i>
+                </div>
+                <ul class="nav nav-tabs time-selection-tabs">
+                    <li {{bind-attr class="isLiveCharts:active:deactive"}} {{action "selectLiveCharts"}}><a href="#">Live Charts</a></li>
+                    <li {{bind-attr class="isLiveCharts:deactiva:active"}} {{action "selectHistoricCharts"}}><a href="#">Historic Charts</a></li>
+                </ul>
+
+                {{#if isLiveCharts}}
+                    <div>
+                        <h1>Chart timeperiod</h1>
+                        {{view Ember.Select lementId="liveTimespanInput" class="form-control" contentBinding="chartTimespans" optionLabelPath="content.timespanName" optionValuePath="content.timespanValue" selectionBinding="selectedChartTimespan" prompt="Select Timespan"}}
+                    </div>
+                {{else}}
+                    <div>
+                        <h1>Chart From</h1>
+                        {{date-picker date=selectedChartFrom}}
+                    </div>
+
+                    <div>
+                        <h1>Chart To</h1>
+                        {{date-picker date=selectedChartTo}}
+                    </div>
+                {{/if}}
+
+                <div>
+                    <h1>Resolution</h1>
+                    {{view Ember.Select elementId="liveResolutionInput" class="form-control" contentBinding="chartResolutions" optionLabelPath="content.chartResolutionName" optionValuePath="content.chartResolutionValue" selectionBinding="selectedChartResolution" prompt="Select Resolution"}}
+                </div>
+                <div>
+                    <h1>Timezone</h1>
+                    {{view Ember.Select elementId="liveTimezoneInput" class="form-control" contentBinding="timezones" optionLabelPath="content.timezoneName" optionValuePath="content.timezoneId" selectionBinding="selectedTimezone" prompt="Select Timezone"}}
+                </div>
+
+                <div class="smallMarginTop">
+                    {{#unless isLiveCharts}}
+                        <button class="btn btn-primary form-control" {{action "updateCharts"}}>Update Charts</button>
+                    {{/unless}}
+                </div>
+
+            </div>
+        {{/unless}}
+
+    </div>
+
+</div>

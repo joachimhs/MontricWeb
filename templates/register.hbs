@@ -1,0 +1,49 @@
+<div id="registerArea">
+    <div id="loginForm">
+        <h1>Register new Account!</h1>
+        <p>You have successfully logged in via Mozilla persona, but you email address is currently not associated with a Montric account.<br />
+        <br />
+        In order to set up an account for you, we need some additional information!</p>
+
+        {{#if isErrorMessageShown}}
+            <div class="bg-danger bg-danger-large"><i class="fa fa-2x fa-exclamation-triangle pull-left"></i> {{errorMessage}}</div>
+        {{/if}}
+
+        <form role="form">
+            <div class="form-group">
+                <label for="emailInput">Email Address</label>
+                <input type="text" {{bind-attr value=controllers.user.content.userName}} disabled  class="form-control" id="accountNameInput" placeholder="Email Address"/>
+            </div>
+            <div class="form-group">
+                <label for="accountNameInput">Account Name</label>
+                {{input type="text" value=newAccountName class="form-control" id="accountNameInput" placeholder="New Account name" focus-out="accountFocusOut"}}
+            </div>
+            <div class="form-group">
+                <label for="firstNameInput">First Name</label>
+                {{input type="text" value=newFirstName class="form-control" id="firstNameInput" placeholder="Your First name(s)"}}
+            </div>
+            <div class="form-group">
+                <label for="surnameInput">Surname</label>
+                {{input type="text" value=newSurname class="form-control" id="surnameInput" placeholder="Your surname"}}
+            </div>
+            <div class="form-group">
+                <label for="companyInput">Company Name</label>
+                {{input type="text" value=newCompanyName class="form-control" id="companyInput" placeholder="Your Company Name (if any)"}}
+            </div>
+            <div class="form-group">
+                <label for="countryInput">Country</label>
+                {{input type="text" value=newCountry class="form-control" id="countryInput" placeholder="Your Country of Residence"}}
+            </div>
+            <div class="form-group">
+                <label for="descriptionInput">What Will You Use Montric For?</label>
+                <textarea type="text" {{bind-attr value=newUsage}} class="form-control" id="descriptionInput" placeholder=""></textarea>
+            </div>
+            <hr />
+            <div class="form-group text-center">
+                <button class="btn btn-primary" {{action "registerAccount"}}>Register New Account</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="humongousMarginTop"></div>
+</div>

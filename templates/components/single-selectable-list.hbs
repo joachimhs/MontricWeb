@@ -1,0 +1,7 @@
+<div class="list-group mediumTopPadding" style="width: 95%;">
+    {{#each node in nodes}}
+        {{single-selectable-list-item node=node tagName=div classNames="list-group-item" action="showDeleteModal" textWidth=textWidth selectedNode=selectedNode}}
+    {{/each}}
+</div>
+
+{{!delete-modal elementId=deleteModalId item=nodeForDelete}}

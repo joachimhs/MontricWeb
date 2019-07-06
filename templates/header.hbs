@@ -1,0 +1,11 @@
+<header>
+    <img src="/images/montric_logo_small_dark.png" class="header-logo" />
+    <div class="pull-right">
+        {{#link-to "explore"}}<img src="/images/icon_explore_thumb.png" /> Explore{{/link-to}} |
+        {{#link-to "dashboards"}}<img src="/images/icon_dash_thumb.png" /> Dashboards{{/link-to}} |
+        {{#if controllers.user.content.isAdmin}}
+            {{#link-to "admin"}}<img src="/images/icon_admin_thumb.png" /> Admin{{/link-to}} |
+        {{/if}}
+        <span {{action "doLogOut"}} class="clickable">Log Out</span>
+    </div>
+</header>

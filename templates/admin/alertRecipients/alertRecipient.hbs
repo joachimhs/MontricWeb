@@ -1,0 +1,32 @@
+<div id="chartsArea">
+    <div class="chart">
+        <h1>Alert Recipients: {{alertRecipient.id}}</h1>
+
+        <form role="form">
+            <table class="table">
+                <tr>
+                    <td>Send Alert Via:</td>
+                    <td colspan="1">
+                        {{single-selectable-list nodes=controllers.adminAlertRecipients.alertPlugins selectedNode=alertRecipient.pluginName}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Add Recipient</td>
+                    <td>
+                        {{input type="text" value=controller.newRecipient class="form-control"}}
+                        <button class="btn btn-primary form-control" {{action "addNewRecipient"}}>Add</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {{multi-selectable-list nodes=alertRecipient.recipients selectedNodes=selectedAlertRecipients}}
+                        <button class="btn btn-primary form-control" {{action "deleteSelectedNodes"}}>Delete Selected Recipients</button>
+                    </td>
+                </tr>
+                <tr class="footer">
+                    <td colspan="4"><button {{action "doCommitAlertRecipient"}} class="btn btn-primary" style="width: 100%;">Save Alert Recipient</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div id="chartsArea">
+    <div class="chart">
+        <h1>{{id}}</h1>
+        <form role="form">
+            <table class="table">
+                <tr>
+                    <td style="width: 150px;">Select nodes:</td>
+                    <td>
+                        <div style="max-height: 250px; min-height: 250px; overflow: scroll;" class="azureBlueBackground azureBlueBorderThin">
+                        {{! view Montric.TreeView itemsBinding="controllers.administrationMenu.rootNodes"}}
+                        {{tree-menu rootNodes=controllers.admin.rootNodes allowMultipleSelections=true excludeGeneratedNodes=true selectedNode=selectedChartGroups}}
+                    </div>
+                        <button {{action "doAddCheckedNodes"}} class="btn btn-success" style="">Add selected Charts to Chart Group</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Selected Nodes:</td>
+                    <td>
+                        <div style="max-height: 250px; max-height: 250px; overflow: scroll;" class="azureBlueBackground azureBlueBorderThin">
+                            {{! view Montric.SelectableListView listItemsBinding="selectedItem.chartGroups" deleteAction="deleteSelectedChartPathGroup" maxCharacters="120" selectedItemBinding="controller.selectedChartGroupPath"}}
+                            {{multi-selectable-list nodes=chartGroups selectedNodes=selectedChartGroups}}
+                        </div>
+                        <button {{action "doDeleteSelectedNodes"}} class="btn btn-success" style="">Delete selected Charts from Chart Group</button>
+                    </td>
+                </tr>
+                <tr class="footer">
+                    <td colspan="2"><button {{action doCommitChartGroup}} class="btn btn-primary" style="">Save Chart Group</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

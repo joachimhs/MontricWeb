@@ -1,0 +1,47 @@
+<div id="chartsArea">
+    <div class="chart">
+        <h1>Alert: {{model.id}}</h1>
+
+        <form role="form">
+            <table class="table">
+                <tr>
+                    <td>Activated:</td>
+                    <td colspan="3">
+                        {{check-box isSelected=model.alertActivated selectedText="activated" deselectedText="deactivated"}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Error Value:</td>
+                    <td>{{view Ember.TextField valueBinding="model.alertErrorValue" classNames="input-mini form-control"}}</td>
+                    <td>Warning Value:</td>
+                    <td>{{view Ember.TextField valueBinding="model.alertWarningValue" classNames="input-mini form-control"}}</td>
+                </tr>
+                <tr>
+                    <td>Alert Type:</td>
+                    <td>{{view Ember.Select classNames="input-medium form-control" valueBinding="model.alertType" contentBinding="controller.alertTypes" optionLabelPath="content.value" optionValuePath="content.key"}}</td>
+                    <td>Alert Delay:</td>
+                    <td>{{view Ember.TextField valueBinding="model.alertDelay" classNames="input-mini form-control"}}</td>
+                </tr>
+                <tr>
+                    <td>Alert Source:</td>
+                    <td colspan="3">
+
+                        <div>{{#if model.alertSource}}{{model.alertSource}}{{else}}None Selected{{/if}}</div>
+                        <div style="max-height: 250px; overflow: scroll; margin-bottom: 15px;" class="azureBlueBackground azureBlueBorderThin">
+                            {{tree-menu rootNodes=controllers.admin.rootNodes allowMultipleSelections=false selectedNode=model.alertSource excludeGeneratedNodes=true}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alert Recipient:</td>
+                    <td colspan="3">
+                        {{multi-selectable-list nodes=controllers.adminAlerts.alertRecipients selectedNodes=controller.alertNotifications}}
+                    </td>
+                </tr>
+                <tr class="footer">
+                    <td colspan="4"><button {{action "doCommitAlert"}} class="btn btn-primary" style="width: 100%;">Save Alert</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
